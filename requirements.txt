@@ -1,0 +1,6 @@
+networkx
+pydantic
+python-dotenv
+pytest
+openai
+rich

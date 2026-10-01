@@ -1,0 +1,292 @@
+{
+  "agent_version": "v2",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "generated_at": "2026-10-01T01:22:53.566058+00:00",
+  "total_cases": 6,
+  "passing": 6,
+  "failing": 0,
+  "regressed": 0,
+  "provider_error_count": 0,
+  "cases": [
+    {
+      "case_id": "path_01",
+      "source_eval_case_id": "path_01",
+      "success": true,
+      "score": 1.0,
+      "regression_pass": true,
+      "fixed_in_version": "v2",
+      "minimum_score": 0.8,
+      "required_tools": [
+        "trace_path"
+      ],
+      "missing_required_tools": [],
+      "acceptance_failures": [],
+      "tools_called": [
+        "trace_path"
+      ],
+      "failures": [],
+      "original_v1_failure": {
+        "success": false,
+        "score": 1.0,
+        "failures": [
+          "unsupported_claim"
+        ],
+        "tools_called": [
+          "trace_path"
+        ]
+      },
+      "reason": "V1 found the physical path but made an unsupported communication claim from path evidence alone.",
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-10-01T01-21-31.018677-00-00_4b041868-d987-49cf-8e7c-2f81ca3a8d54_v2.json",
+      "completed": true,
+      "run_status": "completed",
+      "runtime_error": null,
+      "retry_count": 0,
+      "provider_error": false,
+      "error_type": null,
+      "error_status": null
+    },
+    {
+      "case_id": "path_03",
+      "source_eval_case_id": "path_03",
+      "success": true,
+      "score": 1.0,
+      "regression_pass": true,
+      "fixed_in_version": "v2",
+      "minimum_score": 0.8,
+      "required_tools": [
+        "trace_path"
+      ],
+      "missing_required_tools": [],
+      "acceptance_failures": [],
+      "tools_called": [
+        "trace_path"
+      ],
+      "failures": [],
+      "original_v1_failure": {
+        "success": false,
+        "score": 0.2213,
+        "failures": [
+          "wrong_tool",
+          "missing_required_tool",
+          "wrong_arguments",
+          "unnecessary_tool_call",
+          "missing_step"
+        ],
+        "tools_called": [
+          "get_device_state",
+          "get_device_state",
+          "get_device_state",
+          "get_device_state",
+          "get_device_state"
+        ]
+      },
+      "reason": "V1 repeatedly selected get_device_state instead of trace_path for a pure path question.",
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-10-01T01-21-35.320148-00-00_f8c94eb9-9e00-4e08-bf5e-9fa87c6853df_v2.json",
+      "completed": true,
+      "run_status": "completed",
+      "runtime_error": null,
+      "retry_count": 0,
+      "provider_error": false,
+      "error_type": null,
+      "error_status": null
+    },
+    {
+      "case_id": "state_02",
+      "source_eval_case_id": "state_02",
+      "success": true,
+      "score": 1.0,
+      "regression_pass": true,
+      "fixed_in_version": "v2",
+      "minimum_score": 0.8,
+      "required_tools": [
+        "get_device_state"
+      ],
+      "missing_required_tools": [],
+      "acceptance_failures": [],
+      "tools_called": [
+        "get_device_state"
+      ],
+      "failures": [],
+      "original_v1_failure": {
+        "success": false,
+        "score": 0.08,
+        "failures": [
+          "missing_required_tool",
+          "wrong_arguments",
+          "missing_step"
+        ],
+        "tools_called": []
+      },
+      "reason": "V1 answered without calling get_device_state, so device health and service details lacked deterministic evidence.",
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-10-01T01-21-47.813724-00-00_3a983b36-9179-4bd3-a1ee-ec9a650b6dc3_v2.json",
+      "completed": true,
+      "run_status": "completed",
+      "runtime_error": null,
+      "retry_count": 0,
+      "provider_error": false,
+      "error_type": null,
+      "error_status": null
+    },
+    {
+      "case_id": "diag_04",
+      "source_eval_case_id": "diag_04",
+      "success": true,
+      "score": 1.0,
+      "regression_pass": true,
+      "fixed_in_version": "v2",
+      "minimum_score": 0.8,
+      "required_tools": [
+        "check_reachability"
+      ],
+      "missing_required_tools": [],
+      "acceptance_failures": [],
+      "tools_called": [
+        "check_reachability",
+        "inspect_acl"
+      ],
+      "failures": [],
+      "original_v1_failure": {
+        "success": false,
+        "score": 0.76,
+        "failures": [
+          "wrong_tool"
+        ],
+        "tools_called": [
+          "get_device_state",
+          "get_device_state",
+          "check_reachability"
+        ]
+      },
+      "reason": "V1 made redundant endpoint-state calls and scored below the success threshold on a network-policy diagnosis.",
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-10-01T01-21-58.156519-00-00_d0e80064-0ca7-4e08-a7c5-5c7b86f50f81_v2.json",
+      "completed": true,
+      "run_status": "completed",
+      "runtime_error": null,
+      "retry_count": 0,
+      "provider_error": false,
+      "error_type": null,
+      "error_status": null
+    },
+    {
+      "case_id": "multi_02",
+      "source_eval_case_id": "multi_02",
+      "success": true,
+      "score": 0.925,
+      "regression_pass": true,
+      "fixed_in_version": "v2",
+      "minimum_score": 0.8,
+      "required_tools": [
+        "trace_path",
+        "get_device_state"
+      ],
+      "missing_required_tools": [],
+      "acceptance_failures": [],
+      "tools_called": [
+        "trace_path",
+        "check_reachability",
+        "get_device_state"
+      ],
+      "failures": [],
+      "original_v1_failure": {
+        "success": false,
+        "score": 0.29,
+        "failures": [
+          "missing_required_tool",
+          "wrong_arguments",
+          "missing_step"
+        ],
+        "tools_called": [
+          "get_device_state",
+          "get_device_state",
+          "get_device_state"
+        ]
+      },
+      "reason": "V1 checked device state repeatedly without gathering the required path and endpoint evidence for the billing failure.",
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-10-01T01-22-32.357660-00-00_00dc51c9-3a37-4918-bf78-8429413a859e_v2.json",
+      "completed": true,
+      "run_status": "completed",
+      "runtime_error": null,
+      "retry_count": 0,
+      "provider_error": false,
+      "error_type": null,
+      "error_status": null
+    },
+    {
+      "case_id": "multi_03",
+      "source_eval_case_id": "multi_03",
+      "success": true,
+      "score": 1.0,
+      "regression_pass": true,
+      "fixed_in_version": "v2",
+      "minimum_score": 0.8,
+      "required_tools": [
+        "trace_path",
+        "check_reachability"
+      ],
+      "missing_required_tools": [],
+      "acceptance_failures": [],
+      "tools_called": [
+        "trace_path",
+        "check_reachability"
+      ],
+      "failures": [],
+      "original_v1_failure": {
+        "success": false,
+        "score": 0.08,
+        "failures": [
+          "missing_required_tool",
+          "wrong_arguments",
+          "missing_step"
+        ],
+        "tools_called": []
+      },
+      "reason": "V1 stopped without collecting either the requested path or reachability evidence.",
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-10-01T01-22-42.499958-00-00_dae3a848-3257-4243-97c7-48aa22410384_v2.json",
+      "completed": true,
+      "run_status": "completed",
+      "runtime_error": null,
+      "retry_count": 0,
+      "provider_error": false,
+      "error_type": null,
+      "error_status": null
+    }
+  ],
+  "known_unresolved_or_regressed_cases": [
+    {
+      "case_id": "diag_03",
+      "classification": "regressed",
+      "v1_success": true,
+      "v1_score": 1.0,
+      "v1_failures": [],
+      "v2_success": false,
+      "v2_score": 0.585,
+      "v2_failures": [
+        "missing_required_tool",
+        "wrong_entity",
+        "premature_answer",
+        "missing_step"
+      ]
+    }
+  ],
+  "improved_but_not_fixed": [
+    {
+      "case_id": "multi_01",
+      "classification": "improved",
+      "v1_success": false,
+      "v1_score": 0.2295,
+      "v1_failures": [
+        "missing_required_tool",
+        "wrong_arguments",
+        "unnecessary_tool_call",
+        "missing_step"
+      ],
+      "v2_success": false,
+      "v2_score": 0.92,
+      "v2_failures": [
+        "missing_required_tool",
+        "premature_answer",
+        "missing_step"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,658 @@
+[
+  {
+    "id": "reach_01",
+    "category": "simple_reachability",
+    "query": "Can orders-api reach orders-db on port 5432?",
+    "expected_tools": [
+      "check_reachability"
+    ],
+    "required_tools": [
+      "check_reachability"
+    ],
+    "allowed_optional_tools": [
+      "trace_path"
+    ],
+    "required_arguments": {
+      "source": "orders-api",
+      "destination": "orders-db",
+      "port": 5432
+    },
+    "referenced_devices": [
+      "orders-api",
+      "orders-db"
+    ],
+    "required_evidence": [
+      "orders-api",
+      "orders-db",
+      "reachable"
+    ],
+    "expected_outcome": "reachable",
+    "expected_blocker": null,
+    "expected_rule_id": null,
+    "min_tool_calls": 1,
+    "max_reasonable_tool_calls": 2,
+    "notes": "A direct service reachability check should be sufficient."
+  },
+  {
+    "id": "reach_02",
+    "category": "simple_reachability",
+    "query": "Can internet reach public-web over HTTPS on port 443?",
+    "expected_tools": [
+      "check_reachability"
+    ],
+    "required_tools": [
+      "check_reachability"
+    ],
+    "allowed_optional_tools": [
+      "trace_path"
+    ],
+    "required_arguments": {
+      "source": "internet",
+      "destination": "public-web",
+      "port": 443
+    },
+    "referenced_devices": [
+      "internet",
+      "public-web",
+      "edge-fw"
+    ],
+    "required_evidence": [
+      "internet",
+      "public-web",
+      "reachable"
+    ],
+    "expected_outcome": "reachable",
+    "expected_blocker": null,
+    "expected_rule_id": null,
+    "min_tool_calls": 1,
+    "max_reasonable_tool_calls": 2,
+    "notes": "Public HTTPS is explicitly allowed through edge-fw."
+  },
+  {
+    "id": "reach_03",
+    "category": "simple_reachability",
+    "query": "Can orders-api connect to session-cache on Redis port 6379?",
+    "expected_tools": [
+      "check_reachability"
+    ],
+    "required_tools": [
+      "check_reachability"
+    ],
+    "allowed_optional_tools": [
+      "trace_path"
+    ],
+    "required_arguments": {
+      "source": "orders-api",
+      "destination": "session-cache",
+      "port": 6379
+    },
+    "referenced_devices": [
+      "orders-api",
+      "session-cache"
+    ],
+    "required_evidence": [
+      "orders-api",
+      "session-cache",
+      "6379",
+      "reachable"
+    ],
+    "expected_outcome": "reachable",
+    "expected_blocker": null,
+    "expected_rule_id": null,
+    "min_tool_calls": 1,
+    "max_reasonable_tool_calls": 2,
+    "notes": "The cache service and its allowed Redis flow are present in the dataset."
+  },
+  {
+    "id": "path_01",
+    "category": "path_analysis",
+    "query": "What path does admin-net take to orders-db?",
+    "expected_tools": [
+      "trace_path"
+    ],
+    "required_tools": [
+      "trace_path"
+    ],
+    "allowed_optional_tools": [],
+    "required_arguments": {
+      "source": "admin-net",
+      "destination": "orders-db"
+    },
+    "referenced_devices": [
+      "admin-net",
+      "internal-fw",
+      "orders-db"
+    ],
+    "required_evidence": [
+      "admin-net",
+      "internal-fw",
+      "orders-db"
+    ],
+    "expected_outcome": "path_found",
+    "expected_blocker": null,
+    "expected_rule_id": null,
+    "min_tool_calls": 1,
+    "max_reasonable_tool_calls": 1,
+    "notes": "This is a topology-only question; reachability policy is out of scope."
+  },
+  {
+    "id": "path_02",
+    "category": "path_analysis",
+    "query": "List the network path from internet to billing-db.",
+    "expected_tools": [
+      "trace_path"
+    ],
+    "required_tools": [
+      "trace_path"
+    ],
+    "allowed_optional_tools": [],
+    "required_arguments": {
+      "source": "internet",
+      "destination": "billing-db"
+    },
+    "referenced_devices": [
+      "internet",
+      "edge-fw",
+      "customer-web",
+      "billing-api",
+      "billing-db"
+    ],
+    "required_evidence": [
+      "internet",
+      "edge-fw",
+      "customer-web",
+      "billing-api",
+      "billing-db"
+    ],
+    "expected_outcome": "path_found",
+    "expected_blocker": null,
+    "expected_rule_id": null,
+    "min_tool_calls": 1,
+    "max_reasonable_tool_calls": 1,
+    "notes": "Device state does not change the physical topology path."
+  },
+  {
+    "id": "path_03",
+    "category": "path_analysis",
+    "query": "How does traffic from the admin network get to the orders database?",
+    "expected_tools": [
+      "trace_path"
+    ],
+    "required_tools": [
+      "trace_path"
+    ],
+    "allowed_optional_tools": [],
+    "required_arguments": {
+      "source": "admin-net",
+      "destination": "orders-db"
+    },
+    "referenced_devices": [
+      "admin-net",
+      "internal-fw",
+      "orders-db"
+    ],
+    "required_evidence": [
+      "admin-net",
+      "internal-fw",
+      "orders-db"
+    ],
+    "expected_outcome": "path_found",
+    "expected_blocker": null,
+    "expected_rule_id": null,
+    "min_tool_calls": 1,
+    "max_reasonable_tool_calls": 1,
+    "notes": "Natural-language aliases must map to admin-net and orders-db."
+  },
+  {
+    "id": "state_01",
+    "category": "device_state",
+    "query": "Is billing-db up?",
+    "expected_tools": [
+      "get_device_state"
+    ],
+    "required_tools": [
+      "get_device_state"
+    ],
+    "allowed_optional_tools": [],
+    "required_arguments": {
+      "device": "billing-db"
+    },
+    "referenced_devices": [
+      "billing-db"
+    ],
+    "required_evidence": [
+      "billing-db",
+      "down"
+    ],
+    "expected_outcome": "down",
+    "expected_blocker": null,
+    "expected_rule_id": null,
+    "min_tool_calls": 1,
+    "max_reasonable_tool_calls": 1,
+    "notes": "A single state lookup should answer the question."
+  },
+  {
+    "id": "state_02",
+    "category": "device_state",
+    "query": "Is the orders database healthy, and what service does it expose?",
+    "expected_tools": [
+      "get_device_state"
+    ],
+    "required_tools": [
+      "get_device_state"
+    ],
+    "allowed_optional_tools": [],
+    "required_arguments": {
+      "device": "orders-db"
+    },
+    "referenced_devices": [
+      "orders-db"
+    ],
+    "required_evidence": [
+      "orders-db",
+      "up",
+      "postgresql",
+      "5432"
+    ],
+    "expected_outcome": "up",
+    "expected_blocker": null,
+    "expected_rule_id": null,
+    "min_tool_calls": 1,
+    "max_reasonable_tool_calls": 1,
+    "notes": "The device record provides both health and service metadata."
+  },
+  {
+    "id": "acl_01",
+    "category": "acl_investigation",
+    "query": "What ACL rule affects admin-net traffic to orders-db on PostgreSQL port 5432?",
+    "expected_tools": [
+      "inspect_acl"
+    ],
+    "required_tools": [
+      "inspect_acl"
+    ],
+    "allowed_optional_tools": [
+      "trace_path"
+    ],
+    "required_arguments": {
+      "device": "internal-fw",
+      "source": "admin-net",
+      "destination": "orders-db",
+      "port": 5432
+    },
+    "referenced_devices": [
+      "admin-net",
+      "internal-fw",
+      "orders-db"
+    ],
+    "required_evidence": [
+      "acl-17",
+      "deny",
+      "internal-fw"
+    ],
+    "expected_outcome": "deny",
+    "expected_blocker": "internal-fw",
+    "expected_rule_id": "acl-17",
+    "min_tool_calls": 1,
+    "max_reasonable_tool_calls": 2,
+    "notes": "The answer must identify the exact regression-sensitive ACL rule."
+  },
+  {
+    "id": "acl_02",
+    "category": "acl_investigation",
+    "query": "Which edge-fw ACL permits internet access to public-web on port 443?",
+    "expected_tools": [
+      "inspect_acl"
+    ],
+    "required_tools": [
+      "inspect_acl"
+    ],
+    "allowed_optional_tools": [],
+    "required_arguments": {
+      "device": "edge-fw",
+      "source": "internet",
+      "destination": "public-web",
+      "port": 443
+    },
+    "referenced_devices": [
+      "internet",
+      "edge-fw",
+      "public-web"
+    ],
+    "required_evidence": [
+      "acl-01",
+      "allow",
+      "edge-fw"
+    ],
+    "expected_outcome": "allow",
+    "expected_blocker": null,
+    "expected_rule_id": "acl-01",
+    "min_tool_calls": 1,
+    "max_reasonable_tool_calls": 1,
+    "notes": "The firewall and complete ACL tuple are stated in the query."
+  },
+  {
+    "id": "acl_03",
+    "category": "acl_investigation",
+    "query": "What edge-fw rule allows public-web to call orders-api on port 8443?",
+    "expected_tools": [
+      "inspect_acl"
+    ],
+    "required_tools": [
+      "inspect_acl"
+    ],
+    "allowed_optional_tools": [],
+    "required_arguments": {
+      "device": "edge-fw",
+      "source": "public-web",
+      "destination": "orders-api",
+      "port": 8443
+    },
+    "referenced_devices": [
+      "edge-fw",
+      "public-web",
+      "orders-api"
+    ],
+    "required_evidence": [
+      "acl-03",
+      "allow",
+      "8443"
+    ],
+    "expected_outcome": "allow",
+    "expected_blocker": null,
+    "expected_rule_id": "acl-03",
+    "min_tool_calls": 1,
+    "max_reasonable_tool_calls": 1,
+    "notes": "This checks targeted ACL filtering without reachability analysis."
+  },
+  {
+    "id": "diag_01",
+    "category": "root_cause",
+    "query": "Why can't admin-net reach orders-db on port 5432?",
+    "expected_tools": [
+      "check_reachability",
+      "inspect_acl"
+    ],
+    "required_tools": [
+      "inspect_acl"
+    ],
+    "required_tool_sets": [
+      [
+        "check_reachability",
+        "inspect_acl"
+      ],
+      [
+        "find_blocking_hop",
+        "inspect_acl"
+      ]
+    ],
+    "allowed_optional_tools": [
+      "trace_path",
+      "find_blocking_hop",
+      "get_device_state"
+    ],
+    "required_arguments": {
+      "source": "admin-net",
+      "destination": "orders-db",
+      "port": 5432
+    },
+    "referenced_devices": [
+      "admin-net",
+      "internal-fw",
+      "orders-db"
+    ],
+    "required_evidence": [
+      "internal-fw",
+      "acl-17",
+      "explicit_deny"
+    ],
+    "expected_outcome": "blocked",
+    "expected_blocker": "internal-fw",
+    "expected_rule_id": "acl-17",
+    "min_tool_calls": 2,
+    "max_reasonable_tool_calls": 4,
+    "notes": "Either reachability or blocking-hop analysis may establish the blocker before ACL inspection."
+  },
+  {
+    "id": "diag_02",
+    "category": "root_cause",
+    "query": "Why can't billing-api reach billing-db on port 5432?",
+    "expected_tools": [
+      "check_reachability",
+      "get_device_state"
+    ],
+    "required_tools": [
+      "check_reachability",
+      "get_device_state"
+    ],
+    "allowed_optional_tools": [
+      "trace_path",
+      "find_blocking_hop"
+    ],
+    "required_arguments": {
+      "source": "billing-api",
+      "destination": "billing-db",
+      "port": 5432
+    },
+    "referenced_devices": [
+      "billing-api",
+      "billing-db"
+    ],
+    "required_evidence": [
+      "billing-db",
+      "down",
+      "destination_down"
+    ],
+    "expected_outcome": "blocked",
+    "expected_blocker": "billing-db",
+    "expected_rule_id": null,
+    "min_tool_calls": 2,
+    "max_reasonable_tool_calls": 3,
+    "notes": "The diagnosis must distinguish destination failure from an ACL denial."
+  },
+  {
+    "id": "diag_03",
+    "category": "root_cause",
+    "query": "Why is internet blocked from reaching orders-api directly on port 443?",
+    "expected_tools": [
+      "check_reachability",
+      "inspect_acl"
+    ],
+    "required_tools": [
+      "check_reachability",
+      "inspect_acl"
+    ],
+    "allowed_optional_tools": [
+      "trace_path",
+      "find_blocking_hop"
+    ],
+    "required_arguments": {
+      "source": "internet",
+      "destination": "orders-api",
+      "port": 443
+    },
+    "referenced_devices": [
+      "internet",
+      "edge-fw",
+      "orders-api"
+    ],
+    "required_evidence": [
+      "edge-fw",
+      "acl-02",
+      "explicit_deny"
+    ],
+    "expected_outcome": "blocked",
+    "expected_blocker": "edge-fw",
+    "expected_rule_id": "acl-02",
+    "min_tool_calls": 2,
+    "max_reasonable_tool_calls": 4,
+    "notes": "The explicit edge firewall deny must be distinguished from default policy."
+  },
+  {
+    "id": "diag_04",
+    "category": "root_cause",
+    "query": "Why can't internet connect directly to billing-api on its application port 8443?",
+    "expected_tools": [
+      "check_reachability",
+      "find_blocking_hop"
+    ],
+    "required_tools": [
+      "check_reachability"
+    ],
+    "allowed_optional_tools": [
+      "trace_path",
+      "find_blocking_hop",
+      "inspect_acl"
+    ],
+    "required_arguments": {
+      "source": "internet",
+      "destination": "billing-api",
+      "port": 8443
+    },
+    "referenced_devices": [
+      "internet",
+      "edge-fw",
+      "billing-api"
+    ],
+    "required_evidence": [
+      "edge-fw",
+      "default_deny"
+    ],
+    "expected_outcome": "blocked",
+    "expected_blocker": "edge-fw",
+    "expected_rule_id": null,
+    "min_tool_calls": 2,
+    "max_reasonable_tool_calls": 4,
+    "notes": "No matching allow exists for this flow, so edge-fw applies the default deny policy."
+  },
+  {
+    "id": "multi_01",
+    "category": "multi_step_troubleshooting",
+    "query": "Investigate the route and policy failure preventing the admin network from reaching the orders database on port 5432.",
+    "expected_tools": [
+      "trace_path",
+      "find_blocking_hop",
+      "inspect_acl"
+    ],
+    "required_tools": [
+      "trace_path",
+      "inspect_acl"
+    ],
+    "required_tool_sets": [
+      [
+        "trace_path",
+        "find_blocking_hop",
+        "inspect_acl"
+      ],
+      [
+        "trace_path",
+        "check_reachability",
+        "inspect_acl"
+      ]
+    ],
+    "allowed_optional_tools": [
+      "check_reachability",
+      "get_device_state"
+    ],
+    "required_arguments": {
+      "source": "admin-net",
+      "destination": "orders-db",
+      "port": 5432
+    },
+    "referenced_devices": [
+      "admin-net",
+      "internal-fw",
+      "orders-db"
+    ],
+    "required_evidence": [
+      "admin-net",
+      "internal-fw",
+      "orders-db",
+      "acl-17",
+      "explicit_deny"
+    ],
+    "expected_outcome": "blocked",
+    "expected_blocker": "internal-fw",
+    "expected_rule_id": "acl-17",
+    "min_tool_calls": 3,
+    "max_reasonable_tool_calls": 4,
+    "notes": "The question explicitly requests both route and policy diagnosis."
+  },
+  {
+    "id": "multi_02",
+    "category": "multi_step_troubleshooting",
+    "query": "Billing cannot connect to its database on port 5432. Check the path and determine whether the endpoint or network policy is responsible.",
+    "expected_tools": [
+      "trace_path",
+      "check_reachability",
+      "get_device_state"
+    ],
+    "required_tools": [
+      "trace_path",
+      "get_device_state"
+    ],
+    "allowed_optional_tools": [
+      "find_blocking_hop",
+      "inspect_acl"
+    ],
+    "required_arguments": {
+      "source": "billing-api",
+      "destination": "billing-db",
+      "port": 5432
+    },
+    "referenced_devices": [
+      "billing-api",
+      "billing-db"
+    ],
+    "required_evidence": [
+      "billing-api",
+      "billing-db",
+      "down",
+      "destination_down"
+    ],
+    "expected_outcome": "blocked",
+    "expected_blocker": "billing-db",
+    "expected_rule_id": null,
+    "min_tool_calls": 3,
+    "max_reasonable_tool_calls": 4,
+    "notes": "Path and device evidence should establish that the database state is the root cause."
+  },
+  {
+    "id": "multi_03",
+    "category": "multi_step_troubleshooting",
+    "query": "Verify the public orders web path from internet to public-web on port 443 and confirm whether the connection is allowed.",
+    "expected_tools": [
+      "trace_path",
+      "check_reachability"
+    ],
+    "required_tools": [
+      "trace_path",
+      "check_reachability"
+    ],
+    "allowed_optional_tools": [
+      "inspect_acl"
+    ],
+    "required_arguments": {
+      "source": "internet",
+      "destination": "public-web",
+      "port": 443
+    },
+    "referenced_devices": [
+      "internet",
+      "edge-fw",
+      "public-web"
+    ],
+    "required_evidence": [
+      "internet",
+      "edge-fw",
+      "public-web",
+      "reachable"
+    ],
+    "expected_outcome": "reachable",
+    "expected_blocker": null,
+    "expected_rule_id": null,
+    "min_tool_calls": 2,
+    "max_reasonable_tool_calls": 3,
+    "notes": "Both the route and policy outcome are explicitly requested."
+  }
+]

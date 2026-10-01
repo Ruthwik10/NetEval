@@ -1,0 +1,156 @@
+[
+  {
+    "case_id": "path_01",
+    "source_eval_case_id": "path_01",
+    "original_v1_failure": {
+      "success": false,
+      "score": 1.0,
+      "failures": [
+        "unsupported_claim"
+      ],
+      "tools_called": [
+        "trace_path"
+      ]
+    },
+    "fixed_in_version": "v2",
+    "acceptance": {
+      "must_succeed": true,
+      "minimum_score": 0.8,
+      "required_tools": [
+        "trace_path"
+      ]
+    },
+    "reason": "V1 found the physical path but made an unsupported communication claim from path evidence alone."
+  },
+  {
+    "case_id": "path_03",
+    "source_eval_case_id": "path_03",
+    "original_v1_failure": {
+      "success": false,
+      "score": 0.2213,
+      "failures": [
+        "wrong_tool",
+        "missing_required_tool",
+        "wrong_arguments",
+        "unnecessary_tool_call",
+        "missing_step"
+      ],
+      "tools_called": [
+        "get_device_state",
+        "get_device_state",
+        "get_device_state",
+        "get_device_state",
+        "get_device_state"
+      ]
+    },
+    "fixed_in_version": "v2",
+    "acceptance": {
+      "must_succeed": true,
+      "minimum_score": 0.8,
+      "required_tools": [
+        "trace_path"
+      ]
+    },
+    "reason": "V1 repeatedly selected get_device_state instead of trace_path for a pure path question."
+  },
+  {
+    "case_id": "state_02",
+    "source_eval_case_id": "state_02",
+    "original_v1_failure": {
+      "success": false,
+      "score": 0.08,
+      "failures": [
+        "missing_required_tool",
+        "wrong_arguments",
+        "missing_step"
+      ],
+      "tools_called": []
+    },
+    "fixed_in_version": "v2",
+    "acceptance": {
+      "must_succeed": true,
+      "minimum_score": 0.8,
+      "required_tools": [
+        "get_device_state"
+      ]
+    },
+    "reason": "V1 answered without calling get_device_state, so device health and service details lacked deterministic evidence."
+  },
+  {
+    "case_id": "diag_04",
+    "source_eval_case_id": "diag_04",
+    "original_v1_failure": {
+      "success": false,
+      "score": 0.76,
+      "failures": [
+        "wrong_tool"
+      ],
+      "tools_called": [
+        "get_device_state",
+        "get_device_state",
+        "check_reachability"
+      ]
+    },
+    "fixed_in_version": "v2",
+    "acceptance": {
+      "must_succeed": true,
+      "minimum_score": 0.8,
+      "required_tools": [
+        "check_reachability"
+      ]
+    },
+    "reason": "V1 made redundant endpoint-state calls and scored below the success threshold on a network-policy diagnosis."
+  },
+  {
+    "case_id": "multi_02",
+    "source_eval_case_id": "multi_02",
+    "original_v1_failure": {
+      "success": false,
+      "score": 0.29,
+      "failures": [
+        "missing_required_tool",
+        "wrong_arguments",
+        "missing_step"
+      ],
+      "tools_called": [
+        "get_device_state",
+        "get_device_state",
+        "get_device_state"
+      ]
+    },
+    "fixed_in_version": "v2",
+    "acceptance": {
+      "must_succeed": true,
+      "minimum_score": 0.8,
+      "required_tools": [
+        "trace_path",
+        "get_device_state"
+      ]
+    },
+    "reason": "V1 checked device state repeatedly without gathering the required path and endpoint evidence for the billing failure."
+  },
+  {
+    "case_id": "multi_03",
+    "source_eval_case_id": "multi_03",
+    "original_v1_failure": {
+      "success": false,
+      "score": 0.08,
+      "failures": [
+        "missing_required_tool",
+        "wrong_arguments",
+        "missing_step"
+      ],
+      "tools_called": []
+    },
+    "fixed_in_version": "v2",
+    "acceptance": {
+      "must_succeed": true,
+      "minimum_score": 0.8,
+      "required_tools": [
+        "trace_path",
+        "check_reachability"
+      ]
+    },
+    "reason": "V1 stopped without collecting either the requested path or reachability evidence."
+  }
+]

@@ -1,0 +1,707 @@
+{
+  "agent_version": "v1",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "total_cases": 18,
+  "generated_at": "2026-09-30T16:59:20.602822+00:00",
+  "summary": {
+    "successful_cases": 11,
+    "failed_cases": 7,
+    "task_success_rate": 0.6111,
+    "average_overall_score": 0.7534,
+    "average_tool_calls": 1.8333,
+    "average_latency_ms": 8393.1117,
+    "average_tokens": {
+      "input": 3205.1111,
+      "output": 437.9444,
+      "total": 3643.0556
+    }
+  },
+  "component_scores": {
+    "tool_selection": 0.7222,
+    "arguments": 0.7083,
+    "trajectory": 0.85,
+    "grounding": 0.7815,
+    "final_answer": 0.6667,
+    "efficiency": 0.8194
+  },
+  "failure_counts": {
+    "wrong_tool": 3,
+    "missing_required_tool": 5,
+    "wrong_arguments": 6,
+    "wrong_entity": 0,
+    "wrong_port": 0,
+    "wrong_tool_order": 0,
+    "premature_answer": 0,
+    "unnecessary_tool_call": 2,
+    "missing_step": 5,
+    "tool_result_misread": 0,
+    "unsupported_claim": 1,
+    "format_failure": 0
+  },
+  "category_metrics": {
+    "simple_reachability": {
+      "total_cases": 3,
+      "successful_cases": 3,
+      "failed_cases": 0,
+      "success_rate": 1.0,
+      "average_score": 0.9833
+    },
+    "path_analysis": {
+      "total_cases": 3,
+      "successful_cases": 1,
+      "failed_cases": 2,
+      "success_rate": 0.3333,
+      "average_score": 0.7404
+    },
+    "device_state": {
+      "total_cases": 2,
+      "successful_cases": 1,
+      "failed_cases": 1,
+      "success_rate": 0.5,
+      "average_score": 0.54
+    },
+    "acl_investigation": {
+      "total_cases": 3,
+      "successful_cases": 3,
+      "failed_cases": 0,
+      "success_rate": 1.0,
+      "average_score": 0.9833
+    },
+    "root_cause": {
+      "total_cases": 4,
+      "successful_cases": 3,
+      "failed_cases": 1,
+      "success_rate": 0.75,
+      "average_score": 0.94
+    },
+    "multi_step_troubleshooting": {
+      "total_cases": 3,
+      "successful_cases": 0,
+      "failed_cases": 3,
+      "success_rate": 0.0,
+      "average_score": 0.1998
+    }
+  },
+  "cases": [
+    {
+      "case_id": "reach_01",
+      "category": "simple_reachability",
+      "query": "Can orders-api reach orders-db on port 5432?",
+      "success": true,
+      "overall_score": 1.0,
+      "scores": {
+        "tool_selection": 1.0,
+        "arguments": 1.0,
+        "trajectory": 1.0,
+        "grounding": 1.0,
+        "final_answer": 1.0,
+        "efficiency": 1.0
+      },
+      "failures": [],
+      "tools_called": [
+        "check_reachability"
+      ],
+      "tool_call_count": 1,
+      "latency_ms": 2526.29,
+      "tokens": {
+        "input": 2340,
+        "output": 175,
+        "total": 2515
+      },
+      "final_answer": "Yes, orders-api can reach orders-db on port 5432 (TCP). The connectivity check shows a direct path between the two devices with no blocking devices or ACL rules interfering.",
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-09-30T16-56-12.573569-00-00_26252983-a00b-4c0d-bc53-8432a87faccc_v1.json",
+      "completed": true,
+      "run_status": "completed",
+      "runtime_error": null,
+      "retry_count": 0
+    },
+    {
+      "case_id": "reach_02",
+      "category": "simple_reachability",
+      "query": "Can internet reach public-web over HTTPS on port 443?",
+      "success": true,
+      "overall_score": 0.95,
+      "scores": {
+        "tool_selection": 0.75,
+        "arguments": 1.0,
+        "trajectory": 1.0,
+        "grounding": 1.0,
+        "final_answer": 1.0,
+        "efficiency": 1.0
+      },
+      "failures": [
+        "wrong_tool"
+      ],
+      "tools_called": [
+        "get_device_state",
+        "check_reachability"
+      ],
+      "tool_call_count": 2,
+      "latency_ms": 8021.03,
+      "tokens": {
+        "input": 3582,
+        "output": 345,
+        "total": 3927
+      },
+      "final_answer": "Yes, the internet can reach the **public‑web** device over HTTPS (TCP port 443). The connectivity check shows a clear path: **internet → edge‑fw → public‑web**, with no blocking devices or ACL rules preventing the connection.",
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-09-30T16-56-15.104241-00-00_e0cd36fa-70c6-4634-bf90-5dfbea4236c7_v1.json",
+      "completed": true,
+      "run_status": "completed",
+      "runtime_error": null,
+      "retry_count": 0
+    },
+    {
+      "case_id": "reach_03",
+      "category": "simple_reachability",
+      "query": "Can orders-api connect to session-cache on Redis port 6379?",
+      "success": true,
+      "overall_score": 1.0,
+      "scores": {
+        "tool_selection": 1.0,
+        "arguments": 1.0,
+        "trajectory": 1.0,
+        "grounding": 1.0,
+        "final_answer": 1.0,
+        "efficiency": 1.0
+      },
+      "failures": [],
+      "tools_called": [
+        "check_reachability"
+      ],
+      "tool_call_count": 1,
+      "latency_ms": 10952.11,
+      "tokens": {
+        "input": 2344,
+        "output": 274,
+        "total": 2618
+      },
+      "final_answer": "Yes, orders-api can connect to session-cache on Redis port 6379. The reachability check shows a direct path with no blocking devices or ACL rules preventing the connection.",
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-09-30T16-56-23.409285-00-00_542eeb2c-7fa7-428a-bfe2-5a9fff1b37a2_v1.json",
+      "completed": true,
+      "run_status": "completed",
+      "runtime_error": null,
+      "retry_count": 1
+    },
+    {
+      "case_id": "path_01",
+      "category": "path_analysis",
+      "query": "What path does admin-net take to orders-db?",
+      "success": false,
+      "overall_score": 1.0,
+      "scores": {
+        "tool_selection": 1.0,
+        "arguments": 1.0,
+        "trajectory": 1.0,
+        "grounding": 1.0,
+        "final_answer": 1.0,
+        "efficiency": 1.0
+      },
+      "failures": [
+        "unsupported_claim"
+      ],
+      "tools_called": [
+        "trace_path"
+      ],
+      "tool_call_count": 1,
+      "latency_ms": 2944.78,
+      "tokens": {
+        "input": 2279,
+        "output": 225,
+        "total": 2504
+      },
+      "final_answer": "Based on the network topology, the path from **admin-net** to **orders-db** is:\n\n**admin-net → internal-fw → orders-db**\n\nThis path has been confirmed as reachable.",
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-09-30T16-56-34.590855-00-00_82ecce67-4259-4e24-a9ed-3bdcfaca2d4c_v1.json",
+      "completed": true,
+      "run_status": "completed",
+      "runtime_error": null,
+      "retry_count": 1
+    },
+    {
+      "case_id": "path_02",
+      "category": "path_analysis",
+      "query": "List the network path from internet to billing-db.",
+      "success": true,
+      "overall_score": 1.0,
+      "scores": {
+        "tool_selection": 1.0,
+        "arguments": 1.0,
+        "trajectory": 1.0,
+        "grounding": 1.0,
+        "final_answer": 1.0,
+        "efficiency": 1.0
+      },
+      "failures": [],
+      "tools_called": [
+        "trace_path"
+      ],
+      "tool_call_count": 1,
+      "latency_ms": 3274.1,
+      "tokens": {
+        "input": 2291,
+        "output": 222,
+        "total": 2513
+      },
+      "final_answer": "The network path from internet to billing-db is:\n\n**internet → edge-fw → customer-web → billing-api → billing-db**",
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-09-30T16-56-37.538827-00-00_da91bd6c-e235-4a8f-a282-e73de4bc50cc_v1.json",
+      "completed": true,
+      "run_status": "completed",
+      "runtime_error": null,
+      "retry_count": 0
+    },
+    {
+      "case_id": "path_03",
+      "category": "path_analysis",
+      "query": "How does traffic from the admin network get to the orders database?",
+      "success": false,
+      "overall_score": 0.2213,
+      "scores": {
+        "tool_selection": 0.0,
+        "arguments": 0.0,
+        "trajectory": 0.44,
+        "grounding": 0.6667,
+        "final_answer": 0.0,
+        "efficiency": 0.0
+      },
+      "failures": [
+        "wrong_tool",
+        "missing_required_tool",
+        "wrong_arguments",
+        "unnecessary_tool_call",
+        "missing_step"
+      ],
+      "tools_called": [
+        "get_device_state",
+        "get_device_state",
+        "get_device_state",
+        "get_device_state",
+        "get_device_state"
+      ],
+      "tool_call_count": 5,
+      "latency_ms": 18537.78,
+      "tokens": {
+        "input": 7716,
+        "output": 1082,
+        "total": 8798
+      },
+      "final_answer": null,
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-09-30T16-56-57.735472-00-00_4d38ba0b-464a-41d1-8607-72793fe3532f_v1.json",
+      "completed": false,
+      "run_status": "max_tool_rounds_exceeded",
+      "runtime_error": "Maximum tool rounds exceeded (5) before a final answer was produced.",
+      "retry_count": 1
+    },
+    {
+      "case_id": "state_01",
+      "category": "device_state",
+      "query": "Is billing-db up?",
+      "success": true,
+      "overall_score": 1.0,
+      "scores": {
+        "tool_selection": 1.0,
+        "arguments": 1.0,
+        "trajectory": 1.0,
+        "grounding": 1.0,
+        "final_answer": 1.0,
+        "efficiency": 1.0
+      },
+      "failures": [],
+      "tools_called": [
+        "get_device_state"
+      ],
+      "tool_call_count": 1,
+      "latency_ms": 4639.54,
+      "tokens": {
+        "input": 2275,
+        "output": 131,
+        "total": 2406
+      },
+      "final_answer": "Based on the device state check, **billing-db** is currently **down** (status: down). The device is a database running PostgreSQL on TCP port 5432 in the data zone.",
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-09-30T16-57-18.606265-00-00_7b3a46ea-547e-4a1e-b175-4ed5f312770a_v1.json",
+      "completed": true,
+      "run_status": "completed",
+      "runtime_error": null,
+      "retry_count": 1
+    },
+    {
+      "case_id": "state_02",
+      "category": "device_state",
+      "query": "Is the orders database healthy, and what service does it expose?",
+      "success": false,
+      "overall_score": 0.08,
+      "scores": {
+        "tool_selection": 0.0,
+        "arguments": 0.0,
+        "trajectory": 0.4,
+        "grounding": 0.0,
+        "final_answer": 0.0,
+        "efficiency": 0.0
+      },
+      "failures": [
+        "missing_required_tool",
+        "wrong_arguments",
+        "missing_step"
+      ],
+      "tools_called": [],
+      "tool_call_count": 0,
+      "latency_ms": 229.01,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "final_answer": null,
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-09-30T16-57-23.520970-00-00_c6a29718-9fb8-46eb-8df0-a93b1213e0e2_v1.json",
+      "completed": false,
+      "run_status": "api_error",
+      "runtime_error": "NVIDIA API error: Error code: 500 - {'error': {'message': 'Internal server error', 'type': 'Internal Server Error', 'code': 500}}",
+      "retry_count": 1
+    },
+    {
+      "case_id": "acl_01",
+      "category": "acl_investigation",
+      "query": "What ACL rule affects admin-net traffic to orders-db on PostgreSQL port 5432?",
+      "success": true,
+      "overall_score": 1.0,
+      "scores": {
+        "tool_selection": 1.0,
+        "arguments": 1.0,
+        "trajectory": 1.0,
+        "grounding": 1.0,
+        "final_answer": 1.0,
+        "efficiency": 1.0
+      },
+      "failures": [],
+      "tools_called": [
+        "inspect_acl"
+      ],
+      "tool_call_count": 1,
+      "latency_ms": 11127.28,
+      "tokens": {
+        "input": 2382,
+        "output": 460,
+        "total": 2842
+      },
+      "final_answer": "Based on the inspection of the internal firewall (`internal-fw`), the ACL rule that affects administrative network (`admin-net`) traffic to the orders database (`orders-db`) on PostgreSQL port 5432 is:\n\n- **Rule ID:** `acl-17`\n- **Action:** `deny`\n- **Description:** \"Deny direct administrative network access to the orders database.\"\n- **Source:** `admin-net`\n- **Destination:** `orders-db`\n- **Port:** `5432`\n- **Protocol:** `tcp`\n- **Priority:** `50`\n\nThis rule explicitly blocks `admin-net` from reaching `orders-db` on port 5432 (PostgreSQL).",
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-09-30T16-57-23.753419-00-00_7aeab922-7125-423e-873b-0fda39e8f92b_v1.json",
+      "completed": true,
+      "run_status": "completed",
+      "runtime_error": null,
+      "retry_count": 0
+    },
+    {
+      "case_id": "acl_02",
+      "category": "acl_investigation",
+      "query": "Which edge-fw ACL permits internet access to public-web on port 443?",
+      "success": true,
+      "overall_score": 0.95,
+      "scores": {
+        "tool_selection": 1.0,
+        "arguments": 0.75,
+        "trajectory": 1.0,
+        "grounding": 1.0,
+        "final_answer": 1.0,
+        "efficiency": 1.0
+      },
+      "failures": [
+        "wrong_arguments"
+      ],
+      "tools_called": [
+        "inspect_acl"
+      ],
+      "tool_call_count": 1,
+      "latency_ms": 4692.03,
+      "tokens": {
+        "input": 2354,
+        "output": 348,
+        "total": 2702
+      },
+      "final_answer": "The edge‑firewall (`edge‑fw`) rule that allows Internet traffic to reach `public-web` on TCP port 443 is:\n\n- **Rule ID:** `acl-01`\n- **Action:** `allow`\n- **Source:** `internet`\n- **Destination:** `public-web`\n- **Port:** `443`\n- **Protocol:** `tcp`\n- **Priority:** `100`\n- **Description:** “Allow public HTTPS traffic to the orders web frontend.”",
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-09-30T16-57-34.882722-00-00_9b0f2bfd-58fa-4d87-95d2-526fa358c1a2_v1.json",
+      "completed": true,
+      "run_status": "completed",
+      "runtime_error": null,
+      "retry_count": 0
+    },
+    {
+      "case_id": "acl_03",
+      "category": "acl_investigation",
+      "query": "What edge-fw rule allows public-web to call orders-api on port 8443?",
+      "success": true,
+      "overall_score": 1.0,
+      "scores": {
+        "tool_selection": 1.0,
+        "arguments": 1.0,
+        "trajectory": 1.0,
+        "grounding": 1.0,
+        "final_answer": 1.0,
+        "efficiency": 1.0
+      },
+      "failures": [],
+      "tools_called": [
+        "inspect_acl"
+      ],
+      "tool_call_count": 1,
+      "latency_ms": 7052.55,
+      "tokens": {
+        "input": 2382,
+        "output": 410,
+        "total": 2792
+      },
+      "final_answer": "Based on the ACL inspection of edge-fw, the rule that permits **public-web** to reach **orders-api** on TCP port **8443** is:\n\n- **Rule ID:** `acl-03`\n- **Action:** `allow`\n- **Description:** “Allow the orders web frontend to call the orders API.”\n- **Source:** `public-web`\n- **Destination:** `orders-api`\n- **Port:** `8443`\n- **Protocol:** `tcp`\n- **Priority:** `100`\n\nThis rule explicitly allows the traffic you asked about.",
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-09-30T16-57-39.806602-00-00_65484a71-2470-4bc7-b490-5289ec785f04_v1.json",
+      "completed": true,
+      "run_status": "completed",
+      "runtime_error": null,
+      "retry_count": 1
+    },
+    {
+      "case_id": "diag_01",
+      "category": "root_cause",
+      "query": "Why can't admin-net reach orders-db on port 5432?",
+      "success": true,
+      "overall_score": 1.0,
+      "scores": {
+        "tool_selection": 1.0,
+        "arguments": 1.0,
+        "trajectory": 1.0,
+        "grounding": 1.0,
+        "final_answer": 1.0,
+        "efficiency": 1.0
+      },
+      "failures": [],
+      "tools_called": [
+        "check_reachability",
+        "inspect_acl",
+        "inspect_acl"
+      ],
+      "tool_call_count": 3,
+      "latency_ms": 10467.53,
+      "tokens": {
+        "input": 5294,
+        "output": 868,
+        "total": 6162
+      },
+      "final_answer": "admin‑net cannot reach **orders-db** on TCP port 5432 because the traffic is explicitly blocked by a firewall rule on **internal‑fw**.\n\n**Details:**\n- **Path:** admin‑net → internal‑fw → orders‑db  \n- **Blocking device:** internal‑fw  \n- **Rule ID:** acl‑17  \n- **Action:** DENY  \n- **Description:** “Deny direct administrative network access to the orders database.”  \n- **Match criteria:**  \n  - Source: admin‑net  \n  - Destination: orders‑db  \n  - Port: 5432  \n  - Protocol: TCP  \n  - Priority: 50  \n\nThe rule is intended to prevent direct administrative access to the orders database, so admin‑net is deliberately denied from reaching orders‑db on port 5432. To allow this connection, the ACL rule on internal‑fw would need to be modified or removed (subject to security policies).",
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-09-30T16-57-46.862742-00-00_084bd8ad-e635-4cac-954a-4b156c457895_v1.json",
+      "completed": true,
+      "run_status": "completed",
+      "runtime_error": null,
+      "retry_count": 0
+    },
+    {
+      "case_id": "diag_02",
+      "category": "root_cause",
+      "query": "Why can't billing-api reach billing-db on port 5432?",
+      "success": true,
+      "overall_score": 1.0,
+      "scores": {
+        "tool_selection": 1.0,
+        "arguments": 1.0,
+        "trajectory": 1.0,
+        "grounding": 1.0,
+        "final_answer": 1.0,
+        "efficiency": 1.0
+      },
+      "failures": [],
+      "tools_called": [
+        "check_reachability",
+        "get_device_state"
+      ],
+      "tool_call_count": 2,
+      "latency_ms": 8873.28,
+      "tokens": {
+        "input": 3704,
+        "output": 448,
+        "total": 4152
+      },
+      "final_answer": "billing-api cannot reach billing-db on port 5432 because the billing‑db device is currently **down**.  \n\n- Reachability test shows `reachable: false` with reason `destination_down` and identifies `billing-db` as the blocking device.  \n- Device inspection confirms that `billing-db` has a PostgreSQL service listening on TCP 5432, but its overall status is `down`.  \n\nWhen a destination host is down, TCP connections cannot be established, so billing-api’s attempts to connect to billing-db:5432 fail. To restore connectivity, bring the billing-db host (or its PostgreSQL service) back online.",
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-09-30T16-57-57.333163-00-00_c0072d27-f912-4480-b741-6c76308c5079_v1.json",
+      "completed": true,
+      "run_status": "completed",
+      "runtime_error": null,
+      "retry_count": 0
+    },
+    {
+      "case_id": "diag_03",
+      "category": "root_cause",
+      "query": "Why is internet blocked from reaching orders-api directly on port 443?",
+      "success": true,
+      "overall_score": 1.0,
+      "scores": {
+        "tool_selection": 1.0,
+        "arguments": 1.0,
+        "trajectory": 1.0,
+        "grounding": 1.0,
+        "final_answer": 1.0,
+        "efficiency": 1.0
+      },
+      "failures": [],
+      "tools_called": [
+        "check_reachability",
+        "inspect_acl"
+      ],
+      "tool_call_count": 2,
+      "latency_ms": 12579.7,
+      "tokens": {
+        "input": 3796,
+        "output": 814,
+        "total": 4610
+      },
+      "final_answer": "Internet traffic cannot reach **orders-api** directly on TCP port 443 because the edge firewall (**edge-fw**) has an explicit deny rule in place.  \n\n- **Blocking device:** `edge-fw`  \n- **Rule ID:** `acl-02`  \n- **Action:** `deny`  \n- **Description:** “Prevent direct internet access to the orders API.”  \n- **Source:** `internet`  \n- **Destination:** `orders-api`  \n- **Port/Protocol:** 443/tcp  \n\nThis ACL rule is evaluated before any allow rules, so packets from the internet destined for orders-api:443 are dropped at the edge firewall. The intended path for external access goes through the public‑web tier (as shown in the reachability path: `internet → edge‑fw → public‑web → orders-api`), but direct access is intentionally blocked by this rule.",
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-09-30T16-58-10.209506-00-00_4fd98eea-21fa-452f-9a63-569fd4a13af8_v1.json",
+      "completed": true,
+      "run_status": "completed",
+      "runtime_error": null,
+      "retry_count": 1
+    },
+    {
+      "case_id": "diag_04",
+      "category": "root_cause",
+      "query": "Why can't internet connect directly to billing-api on its application port 8443?",
+      "success": false,
+      "overall_score": 0.76,
+      "scores": {
+        "tool_selection": 0.75,
+        "arguments": 1.0,
+        "trajectory": 0.8,
+        "grounding": 1.0,
+        "final_answer": 0.0,
+        "efficiency": 1.0
+      },
+      "failures": [
+        "wrong_tool"
+      ],
+      "tools_called": [
+        "get_device_state",
+        "get_device_state",
+        "check_reachability"
+      ],
+      "tool_call_count": 3,
+      "latency_ms": 13009.19,
+      "tokens": {
+        "input": 3597,
+        "output": 638,
+        "total": 4235
+      },
+      "final_answer": null,
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-09-30T16-58-34.785545-00-00_bf3ffcc4-4eb3-4abe-a96a-79d1f27e3547_v1.json",
+      "completed": false,
+      "run_status": "api_error",
+      "runtime_error": "NVIDIA API error: Error code: 500 - {'error': {'message': 'Internal server error', 'type': 'Internal Server Error', 'code': 500}}",
+      "retry_count": 1
+    },
+    {
+      "case_id": "multi_01",
+      "category": "multi_step_troubleshooting",
+      "query": "Investigate the route and policy failure preventing the admin network from reaching the orders database on port 5432.",
+      "success": false,
+      "overall_score": 0.2295,
+      "scores": {
+        "tool_selection": 0.0,
+        "arguments": 0.0,
+        "trajectory": 0.56,
+        "grounding": 0.4,
+        "final_answer": 0.0,
+        "efficiency": 0.75
+      },
+      "failures": [
+        "missing_required_tool",
+        "wrong_arguments",
+        "unnecessary_tool_call",
+        "missing_step"
+      ],
+      "tools_called": [
+        "get_device_state",
+        "get_device_state",
+        "get_device_state",
+        "get_device_state",
+        "get_device_state"
+      ],
+      "tool_call_count": 5,
+      "latency_ms": 25663.0,
+      "tokens": {
+        "input": 7803,
+        "output": 973,
+        "total": 8776
+      },
+      "final_answer": null,
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-09-30T16-58-47.797299-00-00_c63e20d0-2172-484a-bba0-c0ff8b68a3e3_v1.json",
+      "completed": false,
+      "run_status": "max_tool_rounds_exceeded",
+      "runtime_error": "Maximum tool rounds exceeded (5) before a final answer was produced.",
+      "retry_count": 0
+    },
+    {
+      "case_id": "multi_02",
+      "category": "multi_step_troubleshooting",
+      "query": "Billing cannot connect to its database on port 5432. Check the path and determine whether the endpoint or network policy is responsible.",
+      "success": false,
+      "overall_score": 0.29,
+      "scores": {
+        "tool_selection": 0.5,
+        "arguments": 0.0,
+        "trajectory": 0.7,
+        "grounding": 0.0,
+        "final_answer": 0.0,
+        "efficiency": 1.0
+      },
+      "failures": [
+        "missing_required_tool",
+        "wrong_arguments",
+        "missing_step"
+      ],
+      "tools_called": [
+        "get_device_state",
+        "get_device_state",
+        "get_device_state"
+      ],
+      "tool_call_count": 3,
+      "latency_ms": 6258.26,
+      "tokens": {
+        "input": 3553,
+        "output": 470,
+        "total": 4023
+      },
+      "final_answer": null,
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-09-30T16-59-13.807161-00-00_b0316858-c710-4297-acff-6b19527e94d9_v1.json",
+      "completed": false,
+      "run_status": "api_error",
+      "runtime_error": "NVIDIA API error: Error code: 500 - {'error': {'message': 'Internal server error', 'type': 'Internal Server Error', 'code': 500}}",
+      "retry_count": 1
+    },
+    {
+      "case_id": "multi_03",
+      "category": "multi_step_troubleshooting",
+      "query": "Verify the public orders web path from internet to public-web on port 443 and confirm whether the connection is allowed.",
+      "success": false,
+      "overall_score": 0.08,
+      "scores": {
+        "tool_selection": 0.0,
+        "arguments": 0.0,
+        "trajectory": 0.4,
+        "grounding": 0.0,
+        "final_answer": 0.0,
+        "efficiency": 0.0
+      },
+      "failures": [
+        "missing_required_tool",
+        "wrong_arguments",
+        "missing_step"
+      ],
+      "tools_called": [],
+      "tool_call_count": 0,
+      "latency_ms": 228.55,
+      "tokens": {
+        "input": 0,
+        "output": 0,
+        "total": 0
+      },
+      "final_answer": null,
+      "trajectory_file_path": "C:\\Users\\Ruthwik Reddy\\OneDrive\\Desktop\\Projects\\AG_projects\\NetEval\\results\\trajectories\\2026-09-30T16-59-20.372578-00-00_1d78ec00-8e32-4184-b198-9598716497fe_v1.json",
+      "completed": false,
+      "run_status": "api_error",
+      "runtime_error": "NVIDIA API error: Error code: 500 - {'error': {'message': 'Internal server error', 'type': 'Internal Server Error', 'code': 500}}",
+      "retry_count": 1
+    }
+  ]
+}

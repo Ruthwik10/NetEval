@@ -1,0 +1,306 @@
+{
+  "devices": [
+    {
+      "id": "internet",
+      "type": "external",
+      "status": "up",
+      "zone": "external",
+      "services": []
+    },
+    {
+      "id": "edge-fw",
+      "type": "firewall",
+      "status": "up",
+      "zone": "dmz",
+      "services": [
+        {
+          "port": 22,
+          "protocol": "tcp",
+          "name": "ssh"
+        }
+      ]
+    },
+    {
+      "id": "public-web",
+      "type": "web_server",
+      "status": "up",
+      "zone": "dmz",
+      "services": [
+        {
+          "port": 443,
+          "protocol": "tcp",
+          "name": "https"
+        }
+      ]
+    },
+    {
+      "id": "orders-api",
+      "type": "application_server",
+      "status": "up",
+      "zone": "application",
+      "services": [
+        {
+          "port": 8443,
+          "protocol": "tcp",
+          "name": "orders-service"
+        }
+      ]
+    },
+    {
+      "id": "orders-db",
+      "type": "database",
+      "status": "up",
+      "zone": "data",
+      "services": [
+        {
+          "port": 5432,
+          "protocol": "tcp",
+          "name": "postgresql"
+        }
+      ]
+    },
+    {
+      "id": "session-cache",
+      "type": "cache",
+      "status": "up",
+      "zone": "data",
+      "services": [
+        {
+          "port": 6379,
+          "protocol": "tcp",
+          "name": "redis"
+        }
+      ]
+    },
+    {
+      "id": "internal-fw",
+      "type": "firewall",
+      "status": "up",
+      "zone": "admin",
+      "services": []
+    },
+    {
+      "id": "admin-net",
+      "type": "network",
+      "status": "up",
+      "zone": "admin",
+      "services": []
+    },
+    {
+      "id": "customer-web",
+      "type": "web_server",
+      "status": "up",
+      "zone": "dmz",
+      "services": [
+        {
+          "port": 443,
+          "protocol": "tcp",
+          "name": "https"
+        }
+      ]
+    },
+    {
+      "id": "billing-api",
+      "type": "application_server",
+      "status": "up",
+      "zone": "application",
+      "services": [
+        {
+          "port": 8443,
+          "protocol": "tcp",
+          "name": "billing-service"
+        }
+      ]
+    },
+    {
+      "id": "billing-db",
+      "type": "database",
+      "status": "down",
+      "zone": "data",
+      "services": [
+        {
+          "port": 5432,
+          "protocol": "tcp",
+          "name": "postgresql"
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "source": "internet",
+      "destination": "edge-fw",
+      "bidirectional": true
+    },
+    {
+      "source": "edge-fw",
+      "destination": "public-web",
+      "bidirectional": true
+    },
+    {
+      "source": "public-web",
+      "destination": "orders-api",
+      "bidirectional": true
+    },
+    {
+      "source": "orders-api",
+      "destination": "orders-db",
+      "bidirectional": true
+    },
+    {
+      "source": "orders-api",
+      "destination": "session-cache",
+      "bidirectional": true
+    },
+    {
+      "source": "orders-db",
+      "destination": "internal-fw",
+      "bidirectional": true
+    },
+    {
+      "source": "internal-fw",
+      "destination": "admin-net",
+      "bidirectional": true
+    },
+    {
+      "source": "edge-fw",
+      "destination": "customer-web",
+      "bidirectional": true
+    },
+    {
+      "source": "customer-web",
+      "destination": "billing-api",
+      "bidirectional": true
+    },
+    {
+      "source": "billing-api",
+      "destination": "billing-db",
+      "bidirectional": true
+    }
+  ],
+  "acl_rules": [
+    {
+      "id": "acl-01",
+      "device": "edge-fw",
+      "source": "internet",
+      "destination": "public-web",
+      "port": 443,
+      "protocol": "tcp",
+      "action": "allow",
+      "priority": 100,
+      "description": "Allow public HTTPS traffic to the orders web frontend."
+    },
+    {
+      "id": "acl-02",
+      "device": "edge-fw",
+      "source": "internet",
+      "destination": "orders-api",
+      "port": 443,
+      "protocol": "tcp",
+      "action": "deny",
+      "priority": 50,
+      "description": "Prevent direct internet access to the orders API."
+    },
+    {
+      "id": "acl-03",
+      "device": "edge-fw",
+      "source": "public-web",
+      "destination": "orders-api",
+      "port": 8443,
+      "protocol": "tcp",
+      "action": "allow",
+      "priority": 100,
+      "description": "Allow the orders web frontend to call the orders API."
+    },
+    {
+      "id": "acl-04",
+      "device": "internal-fw",
+      "source": "orders-api",
+      "destination": "orders-db",
+      "port": 5432,
+      "protocol": "tcp",
+      "action": "allow",
+      "priority": 100,
+      "description": "Allow the orders API to access PostgreSQL."
+    },
+    {
+      "id": "acl-05",
+      "device": "internal-fw",
+      "source": "orders-api",
+      "destination": "session-cache",
+      "port": 6379,
+      "protocol": "tcp",
+      "action": "allow",
+      "priority": 100,
+      "description": "Allow the orders API to access the Redis session cache."
+    },
+    {
+      "id": "acl-17",
+      "device": "internal-fw",
+      "source": "admin-net",
+      "destination": "orders-db",
+      "port": 5432,
+      "protocol": "tcp",
+      "action": "deny",
+      "priority": 50,
+      "description": "Deny direct administrative network access to the orders database."
+    },
+    {
+      "id": "acl-07",
+      "device": "internal-fw",
+      "source": "admin-net",
+      "destination": "edge-fw",
+      "port": 22,
+      "protocol": "tcp",
+      "action": "allow",
+      "priority": 100,
+      "description": "Allow administrators to manage the edge firewall over SSH."
+    },
+    {
+      "id": "acl-08",
+      "device": "edge-fw",
+      "source": "internet",
+      "destination": "customer-web",
+      "port": 443,
+      "protocol": "tcp",
+      "action": "allow",
+      "priority": 100,
+      "description": "Allow public HTTPS traffic to the customer web frontend."
+    },
+    {
+      "id": "acl-09",
+      "device": "edge-fw",
+      "source": "customer-web",
+      "destination": "billing-api",
+      "port": 8443,
+      "protocol": "tcp",
+      "action": "allow",
+      "priority": 100,
+      "description": "Allow the customer web frontend to call the billing API."
+    },
+    {
+      "id": "acl-10",
+      "device": "internal-fw",
+      "source": "billing-api",
+      "destination": "billing-db",
+      "port": 5432,
+      "protocol": "tcp",
+      "action": "allow",
+      "priority": 100,
+      "description": "Allow the billing API to access PostgreSQL."
+    }
+  ],
+  "zones": [
+    "external",
+    "dmz",
+    "application",
+    "data",
+    "admin"
+  ],
+  "metadata": {
+    "name": "NetEval Synthetic Enterprise Network",
+    "version": "1.0",
+    "description": "Synthetic enterprise network used for deterministic agent reliability evaluation.",
+    "default_policy": "deny"
+  }
+}

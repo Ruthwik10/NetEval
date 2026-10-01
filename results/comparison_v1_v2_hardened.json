@@ -1,0 +1,772 @@
+{
+  "generated_at": "2026-09-30T18:40:33.844573+00:00",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "v1_agent_version": "v1",
+  "v2_agent_version": "v2",
+  "total_cases": 18,
+  "score_tolerance": 0.01,
+  "summary_metrics": {
+    "task_success_rate": {
+      "v1": 0.6111,
+      "v2": 0.8889,
+      "delta": 0.2778
+    },
+    "average_overall_score": {
+      "v1": 0.7534,
+      "v2": 0.9756,
+      "delta": 0.2222
+    }
+  },
+  "component_scores": {
+    "tool_selection": {
+      "v1": 0.7222,
+      "v2": 0.9444,
+      "delta": 0.2222
+    },
+    "arguments": {
+      "v1": 0.7083,
+      "v2": 1.0,
+      "delta": 0.2917
+    },
+    "trajectory": {
+      "v1": 0.85,
+      "v2": 0.9796,
+      "delta": 0.1296
+    },
+    "grounding": {
+      "v1": 0.7815,
+      "v2": 1.0,
+      "delta": 0.2185
+    },
+    "final_answer": {
+      "v1": 0.6667,
+      "v2": 0.9537,
+      "delta": 0.287
+    },
+    "efficiency": {
+      "v1": 0.8194,
+      "v2": 0.9537,
+      "delta": 0.1343
+    }
+  },
+  "operational_metrics": {
+    "average_tool_calls": {
+      "v1": 1.8333,
+      "v2": 1.3889,
+      "delta": -0.4444
+    },
+    "average_latency_ms": {
+      "v1": 8393.1117,
+      "v2": 7734.1367,
+      "delta": -658.975
+    },
+    "average_total_tokens": {
+      "v1": 3643.0556,
+      "v2": 6198.3333,
+      "delta": 2555.2777
+    }
+  },
+  "provider_errors": {
+    "v1": 10.0,
+    "v2": 2.0,
+    "delta": -8.0
+  },
+  "failure_taxonomy": {
+    "wrong_tool": {
+      "v1": 3.0,
+      "v2": 0.0,
+      "delta": -3.0
+    },
+    "missing_required_tool": {
+      "v1": 5.0,
+      "v2": 2.0,
+      "delta": -3.0
+    },
+    "wrong_arguments": {
+      "v1": 6.0,
+      "v2": 0.0,
+      "delta": -6.0
+    },
+    "wrong_entity": {
+      "v1": 0.0,
+      "v2": 0.0,
+      "delta": 0.0
+    },
+    "wrong_port": {
+      "v1": 0.0,
+      "v2": 0.0,
+      "delta": 0.0
+    },
+    "wrong_tool_order": {
+      "v1": 0.0,
+      "v2": 0.0,
+      "delta": 0.0
+    },
+    "premature_answer": {
+      "v1": 0.0,
+      "v2": 2.0,
+      "delta": 2.0
+    },
+    "unnecessary_tool_call": {
+      "v1": 2.0,
+      "v2": 0.0,
+      "delta": -2.0
+    },
+    "missing_step": {
+      "v1": 5.0,
+      "v2": 2.0,
+      "delta": -3.0
+    },
+    "tool_result_misread": {
+      "v1": 0.0,
+      "v2": 0.0,
+      "delta": 0.0
+    },
+    "unsupported_claim": {
+      "v1": 1.0,
+      "v2": 0.0,
+      "delta": -1.0
+    },
+    "format_failure": {
+      "v1": 0.0,
+      "v2": 0.0,
+      "delta": 0.0
+    }
+  },
+  "category_metrics": {
+    "simple_reachability": {
+      "success_rate": {
+        "v1": 1.0,
+        "v2": 1.0,
+        "delta": 0.0
+      },
+      "average_score": {
+        "v1": 0.9833,
+        "v2": 1.0,
+        "delta": 0.0167
+      }
+    },
+    "path_analysis": {
+      "success_rate": {
+        "v1": 0.3333,
+        "v2": 1.0,
+        "delta": 0.6667
+      },
+      "average_score": {
+        "v1": 0.7404,
+        "v2": 1.0,
+        "delta": 0.2596
+      }
+    },
+    "device_state": {
+      "success_rate": {
+        "v1": 0.5,
+        "v2": 1.0,
+        "delta": 0.5
+      },
+      "average_score": {
+        "v1": 0.54,
+        "v2": 1.0,
+        "delta": 0.46
+      }
+    },
+    "acl_investigation": {
+      "success_rate": {
+        "v1": 1.0,
+        "v2": 1.0,
+        "delta": 0.0
+      },
+      "average_score": {
+        "v1": 0.9833,
+        "v2": 0.9833,
+        "delta": 0.0
+      }
+    },
+    "root_cause": {
+      "success_rate": {
+        "v1": 0.75,
+        "v2": 0.75,
+        "delta": 0.0
+      },
+      "average_score": {
+        "v1": 0.94,
+        "v2": 0.9587,
+        "delta": 0.0187
+      }
+    },
+    "multi_step_troubleshooting": {
+      "success_rate": {
+        "v1": 0.0,
+        "v2": 0.6667,
+        "delta": 0.6667
+      },
+      "average_score": {
+        "v1": 0.1998,
+        "v2": 0.925,
+        "delta": 0.7252
+      }
+    }
+  },
+  "case_summary": {
+    "improved": 9,
+    "unchanged": 7,
+    "regressed": 2
+  },
+  "cases": [
+    {
+      "case_id": "reach_01",
+      "category": "simple_reachability",
+      "v1_success": true,
+      "v2_success": true,
+      "v1_score": 1.0,
+      "v2_score": 1.0,
+      "delta": 0.0,
+      "classification": "unchanged",
+      "v1_failures": [],
+      "v2_failures": [],
+      "v1_tools": [
+        "check_reachability"
+      ],
+      "v2_tools": [
+        "check_reachability"
+      ]
+    },
+    {
+      "case_id": "reach_02",
+      "category": "simple_reachability",
+      "v1_success": true,
+      "v2_success": true,
+      "v1_score": 0.95,
+      "v2_score": 1.0,
+      "delta": 0.05,
+      "classification": "improved",
+      "v1_failures": [
+        "wrong_tool"
+      ],
+      "v2_failures": [],
+      "v1_tools": [
+        "get_device_state",
+        "check_reachability"
+      ],
+      "v2_tools": [
+        "check_reachability"
+      ]
+    },
+    {
+      "case_id": "reach_03",
+      "category": "simple_reachability",
+      "v1_success": true,
+      "v2_success": true,
+      "v1_score": 1.0,
+      "v2_score": 1.0,
+      "delta": 0.0,
+      "classification": "unchanged",
+      "v1_failures": [],
+      "v2_failures": [],
+      "v1_tools": [
+        "check_reachability"
+      ],
+      "v2_tools": [
+        "check_reachability"
+      ]
+    },
+    {
+      "case_id": "path_01",
+      "category": "path_analysis",
+      "v1_success": false,
+      "v2_success": true,
+      "v1_score": 1.0,
+      "v2_score": 1.0,
+      "delta": 0.0,
+      "classification": "improved",
+      "v1_failures": [
+        "unsupported_claim"
+      ],
+      "v2_failures": [],
+      "v1_tools": [
+        "trace_path"
+      ],
+      "v2_tools": [
+        "trace_path"
+      ]
+    },
+    {
+      "case_id": "path_02",
+      "category": "path_analysis",
+      "v1_success": true,
+      "v2_success": true,
+      "v1_score": 1.0,
+      "v2_score": 1.0,
+      "delta": 0.0,
+      "classification": "unchanged",
+      "v1_failures": [],
+      "v2_failures": [],
+      "v1_tools": [
+        "trace_path"
+      ],
+      "v2_tools": [
+        "trace_path"
+      ]
+    },
+    {
+      "case_id": "path_03",
+      "category": "path_analysis",
+      "v1_success": false,
+      "v2_success": true,
+      "v1_score": 0.2213,
+      "v2_score": 1.0,
+      "delta": 0.7787,
+      "classification": "improved",
+      "v1_failures": [
+        "wrong_tool",
+        "missing_required_tool",
+        "wrong_arguments",
+        "unnecessary_tool_call",
+        "missing_step"
+      ],
+      "v2_failures": [],
+      "v1_tools": [
+        "get_device_state",
+        "get_device_state",
+        "get_device_state",
+        "get_device_state",
+        "get_device_state"
+      ],
+      "v2_tools": [
+        "trace_path"
+      ]
+    },
+    {
+      "case_id": "state_01",
+      "category": "device_state",
+      "v1_success": true,
+      "v2_success": true,
+      "v1_score": 1.0,
+      "v2_score": 1.0,
+      "delta": 0.0,
+      "classification": "unchanged",
+      "v1_failures": [],
+      "v2_failures": [],
+      "v1_tools": [
+        "get_device_state"
+      ],
+      "v2_tools": [
+        "get_device_state"
+      ]
+    },
+    {
+      "case_id": "state_02",
+      "category": "device_state",
+      "v1_success": false,
+      "v2_success": true,
+      "v1_score": 0.08,
+      "v2_score": 1.0,
+      "delta": 0.92,
+      "classification": "improved",
+      "v1_failures": [
+        "missing_required_tool",
+        "wrong_arguments",
+        "missing_step"
+      ],
+      "v2_failures": [],
+      "v1_tools": [],
+      "v2_tools": [
+        "get_device_state"
+      ]
+    },
+    {
+      "case_id": "acl_01",
+      "category": "acl_investigation",
+      "v1_success": true,
+      "v2_success": true,
+      "v1_score": 1.0,
+      "v2_score": 0.95,
+      "delta": -0.05,
+      "classification": "regressed",
+      "v1_failures": [],
+      "v2_failures": [],
+      "v1_tools": [
+        "inspect_acl"
+      ],
+      "v2_tools": [
+        "inspect_acl"
+      ]
+    },
+    {
+      "case_id": "acl_02",
+      "category": "acl_investigation",
+      "v1_success": true,
+      "v2_success": true,
+      "v1_score": 0.95,
+      "v2_score": 1.0,
+      "delta": 0.05,
+      "classification": "improved",
+      "v1_failures": [
+        "wrong_arguments"
+      ],
+      "v2_failures": [],
+      "v1_tools": [
+        "inspect_acl"
+      ],
+      "v2_tools": [
+        "inspect_acl"
+      ]
+    },
+    {
+      "case_id": "acl_03",
+      "category": "acl_investigation",
+      "v1_success": true,
+      "v2_success": true,
+      "v1_score": 1.0,
+      "v2_score": 1.0,
+      "delta": 0.0,
+      "classification": "unchanged",
+      "v1_failures": [],
+      "v2_failures": [],
+      "v1_tools": [
+        "inspect_acl"
+      ],
+      "v2_tools": [
+        "inspect_acl"
+      ]
+    },
+    {
+      "case_id": "diag_01",
+      "category": "root_cause",
+      "v1_success": true,
+      "v2_success": true,
+      "v1_score": 1.0,
+      "v2_score": 1.0,
+      "delta": 0.0,
+      "classification": "unchanged",
+      "v1_failures": [],
+      "v2_failures": [],
+      "v1_tools": [
+        "check_reachability",
+        "inspect_acl",
+        "inspect_acl"
+      ],
+      "v2_tools": [
+        "check_reachability",
+        "inspect_acl"
+      ]
+    },
+    {
+      "case_id": "diag_02",
+      "category": "root_cause",
+      "v1_success": true,
+      "v2_success": false,
+      "v1_score": 1.0,
+      "v2_score": 0.835,
+      "delta": -0.165,
+      "classification": "regressed",
+      "v1_failures": [],
+      "v2_failures": [
+        "missing_required_tool",
+        "premature_answer",
+        "missing_step"
+      ],
+      "v1_tools": [
+        "check_reachability",
+        "get_device_state"
+      ],
+      "v2_tools": [
+        "check_reachability"
+      ]
+    },
+    {
+      "case_id": "diag_03",
+      "category": "root_cause",
+      "v1_success": true,
+      "v2_success": true,
+      "v1_score": 1.0,
+      "v2_score": 1.0,
+      "delta": 0.0,
+      "classification": "unchanged",
+      "v1_failures": [],
+      "v2_failures": [],
+      "v1_tools": [
+        "check_reachability",
+        "inspect_acl"
+      ],
+      "v2_tools": [
+        "check_reachability",
+        "inspect_acl"
+      ]
+    },
+    {
+      "case_id": "diag_04",
+      "category": "root_cause",
+      "v1_success": false,
+      "v2_success": true,
+      "v1_score": 0.76,
+      "v2_score": 1.0,
+      "delta": 0.24,
+      "classification": "improved",
+      "v1_failures": [
+        "wrong_tool"
+      ],
+      "v2_failures": [],
+      "v1_tools": [
+        "get_device_state",
+        "get_device_state",
+        "check_reachability"
+      ],
+      "v2_tools": [
+        "check_reachability",
+        "inspect_acl"
+      ]
+    },
+    {
+      "case_id": "multi_01",
+      "category": "multi_step_troubleshooting",
+      "v1_success": false,
+      "v2_success": true,
+      "v1_score": 0.2295,
+      "v2_score": 1.0,
+      "delta": 0.7705,
+      "classification": "improved",
+      "v1_failures": [
+        "missing_required_tool",
+        "wrong_arguments",
+        "unnecessary_tool_call",
+        "missing_step"
+      ],
+      "v2_failures": [],
+      "v1_tools": [
+        "get_device_state",
+        "get_device_state",
+        "get_device_state",
+        "get_device_state",
+        "get_device_state"
+      ],
+      "v2_tools": [
+        "trace_path",
+        "check_reachability",
+        "inspect_acl"
+      ]
+    },
+    {
+      "case_id": "multi_02",
+      "category": "multi_step_troubleshooting",
+      "v1_success": false,
+      "v2_success": false,
+      "v1_score": 0.29,
+      "v2_score": 0.775,
+      "delta": 0.485,
+      "classification": "improved",
+      "v1_failures": [
+        "missing_required_tool",
+        "wrong_arguments",
+        "missing_step"
+      ],
+      "v2_failures": [
+        "missing_required_tool",
+        "premature_answer",
+        "missing_step"
+      ],
+      "v1_tools": [
+        "get_device_state",
+        "get_device_state",
+        "get_device_state"
+      ],
+      "v2_tools": [
+        "trace_path",
+        "check_reachability"
+      ]
+    },
+    {
+      "case_id": "multi_03",
+      "category": "multi_step_troubleshooting",
+      "v1_success": false,
+      "v2_success": true,
+      "v1_score": 0.08,
+      "v2_score": 1.0,
+      "delta": 0.92,
+      "classification": "improved",
+      "v1_failures": [
+        "missing_required_tool",
+        "wrong_arguments",
+        "missing_step"
+      ],
+      "v2_failures": [],
+      "v1_tools": [],
+      "v2_tools": [
+        "trace_path",
+        "check_reachability"
+      ]
+    }
+  ],
+  "known_weak_cases": [
+    {
+      "case_id": "path_01",
+      "category": "path_analysis",
+      "v1_success": false,
+      "v2_success": true,
+      "v1_score": 1.0,
+      "v2_score": 1.0,
+      "delta": 0.0,
+      "classification": "improved",
+      "v1_failures": [
+        "unsupported_claim"
+      ],
+      "v2_failures": [],
+      "v1_tools": [
+        "trace_path"
+      ],
+      "v2_tools": [
+        "trace_path"
+      ]
+    },
+    {
+      "case_id": "path_03",
+      "category": "path_analysis",
+      "v1_success": false,
+      "v2_success": true,
+      "v1_score": 0.2213,
+      "v2_score": 1.0,
+      "delta": 0.7787,
+      "classification": "improved",
+      "v1_failures": [
+        "wrong_tool",
+        "missing_required_tool",
+        "wrong_arguments",
+        "unnecessary_tool_call",
+        "missing_step"
+      ],
+      "v2_failures": [],
+      "v1_tools": [
+        "get_device_state",
+        "get_device_state",
+        "get_device_state",
+        "get_device_state",
+        "get_device_state"
+      ],
+      "v2_tools": [
+        "trace_path"
+      ]
+    },
+    {
+      "case_id": "state_02",
+      "category": "device_state",
+      "v1_success": false,
+      "v2_success": true,
+      "v1_score": 0.08,
+      "v2_score": 1.0,
+      "delta": 0.92,
+      "classification": "improved",
+      "v1_failures": [
+        "missing_required_tool",
+        "wrong_arguments",
+        "missing_step"
+      ],
+      "v2_failures": [],
+      "v1_tools": [],
+      "v2_tools": [
+        "get_device_state"
+      ]
+    },
+    {
+      "case_id": "diag_04",
+      "category": "root_cause",
+      "v1_success": false,
+      "v2_success": true,
+      "v1_score": 0.76,
+      "v2_score": 1.0,
+      "delta": 0.24,
+      "classification": "improved",
+      "v1_failures": [
+        "wrong_tool"
+      ],
+      "v2_failures": [],
+      "v1_tools": [
+        "get_device_state",
+        "get_device_state",
+        "check_reachability"
+      ],
+      "v2_tools": [
+        "check_reachability",
+        "inspect_acl"
+      ]
+    },
+    {
+      "case_id": "multi_01",
+      "category": "multi_step_troubleshooting",
+      "v1_success": false,
+      "v2_success": true,
+      "v1_score": 0.2295,
+      "v2_score": 1.0,
+      "delta": 0.7705,
+      "classification": "improved",
+      "v1_failures": [
+        "missing_required_tool",
+        "wrong_arguments",
+        "unnecessary_tool_call",
+        "missing_step"
+      ],
+      "v2_failures": [],
+      "v1_tools": [
+        "get_device_state",
+        "get_device_state",
+        "get_device_state",
+        "get_device_state",
+        "get_device_state"
+      ],
+      "v2_tools": [
+        "trace_path",
+        "check_reachability",
+        "inspect_acl"
+      ]
+    },
+    {
+      "case_id": "multi_02",
+      "category": "multi_step_troubleshooting",
+      "v1_success": false,
+      "v2_success": false,
+      "v1_score": 0.29,
+      "v2_score": 0.775,
+      "delta": 0.485,
+      "classification": "improved",
+      "v1_failures": [
+        "missing_required_tool",
+        "wrong_arguments",
+        "missing_step"
+      ],
+      "v2_failures": [
+        "missing_required_tool",
+        "premature_answer",
+        "missing_step"
+      ],
+      "v1_tools": [
+        "get_device_state",
+        "get_device_state",
+        "get_device_state"
+      ],
+      "v2_tools": [
+        "trace_path",
+        "check_reachability"
+      ]
+    },
+    {
+      "case_id": "multi_03",
+      "category": "multi_step_troubleshooting",
+      "v1_success": false,
+      "v2_success": true,
+      "v1_score": 0.08,
+      "v2_score": 1.0,
+      "delta": 0.92,
+      "classification": "improved",
+      "v1_failures": [
+        "missing_required_tool",
+        "wrong_arguments",
+        "missing_step"
+      ],
+      "v2_failures": [],
+      "v1_tools": [],
+      "v2_tools": [
+        "trace_path",
+        "check_reachability"
+      ]
+    }
+  ]
+}
